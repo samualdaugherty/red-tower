@@ -1,0 +1,38 @@
+@import "tailwindcss";
+@import "./themes.css";
+
+@theme inline {
+  /* Colors - mapped from CSS variables */
+  --color-bg: var(--rtd-color-bg);
+  --color-fg: var(--rtd-color-fg);
+  --color-accent: var(--rtd-color-accent);
+  --color-muted: var(--rtd-color-muted);
+  --color-surface: var(--rtd-color-surface);
+  --color-surface2: var(--rtd-color-surface2);
+  --color-success: var(--rtd-color-success);
+  --color-warning: var(--rtd-color-warning);
+  --color-danger: var(--rtd-color-danger);
+  
+  /* Fonts */
+  --font-header: var(--rtd-font-header);
+  --font-subhead: var(--rtd-font-subhead);
+  --font-body: var(--rtd-font-body);
+  
+  /* Shadows */
+  --shadow-photo: var(--rtd-shadow-photo);
+  --shadow-clock: var(--rtd-shadow-clock);
+  --shadow-hands: var(--rtd-shadow-hands);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-fg font-body;
+  }
+}
+
