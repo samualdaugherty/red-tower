@@ -20,24 +20,24 @@ export function Footer() {
     <footer className="bg-bg border-b-8 border-accent">
       {/* Main Footer Content */}
       <div className="px-6 lg:px-14 py-8 lg:py-16">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-6 items-start">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-6 items-center">
           {/* Contact Section */}
           <div className="flex flex-col gap-3 items-center lg:items-start flex-1 w-full lg:w-auto">
             <p className="font-header text-2xl leading-none text-accent">
               RDTWR
             </p>
-            <p className="font-header text-[32px] leading-none tracking-[-0.96px] text-fg">
+            <p className="font-header text-[24px] sm:text-[32px] leading-none tracking-[-0.96px] text-fg">
               hello@redtowerdigital.com
             </p>
           </div>
 
           {/* No Socials Section */}
           <div className="flex flex-col items-center flex-1">
-            <p className="font-header text-[32px] leading-none tracking-[-0.96px] text-fg text-center whitespace-nowrap -mb-8">
+            <p className="font-header text-[24px] sm:text-[32px] leading-none tracking-[-0.96px] text-fg text-center whitespace-nowrap -mb-8">
               Sorry, no socials
             </p>
             <div className="relative -mb-8">
-              <p className="font-subhead text-[64px] leading-none text-accent text-center whitespace-nowrap rotate-[-2deg]">
+              <p className="font-subhead text-[48px] sm:text-[64px] leading-none text-accent text-center whitespace-nowrap rotate-[-2deg]">
                 we just can't stand 'em
               </p>
             </div>
@@ -73,11 +73,11 @@ export function Footer() {
       </div>
 
       {/* Copyright Section */}
-      <div className="flex items-center justify-center gap-5 pb-6 px-6">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-5 pb-6 px-6">
         <p className="font-body font-light text-sm lg:text-[14px] leading-[1.5] text-fg whitespace-nowrap">
           © 2025 Red Tower Digital
         </p>
-        <p className="font-body font-light text-sm lg:text-[14px] leading-[1.5] text-accent whitespace-nowrap">|</p>
+        <p className="font-body font-light text-sm lg:text-[14px] leading-[1.5] text-accent whitespace-nowrap hidden md:block">|</p>
         <p className="font-body font-light text-sm lg:text-[14px] leading-[1.5] text-fg whitespace-nowrap">
           Please don't steal our stuff
         </p>

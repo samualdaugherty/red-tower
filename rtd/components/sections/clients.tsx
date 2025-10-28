@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export function Clients() {
   return (
-    <section className="relative w-full bg-fg pt-24" data-background="light">
+    <section className="relative w-full bg-fg pt-12 md:pt-24" data-background="light">
       {/* Content wrapper - excludes rounded corners so headline unsticks naturally */}
       <div>
         {/* Section Headline */}
@@ -16,24 +16,17 @@ export function Clients() {
         number="/03"
         codeLeft="whatWeDo ( section (3), components (7) ) {"
         variant="light"
+        className="pt-9 md:pt-4"
       />
 
       {/* Header Content - Paragraph with Red Line */}
-      <div className="flex flex-col gap-[24px] items-start px-0 py-48 w-full">
+      <div className="flex flex-col gap-6 items-start px-6 md:px-8 py-12 md:py-24 lg:py-48 w-full max-w-7xl pt-12 md:pt-24">
         {/* Red Line */}
-        <div className="h-0 w-[834px] relative">
-          <Image
-            src="/images/hero-line.svg"
-            alt=""
-            width={834}
-            height={1}
-            className="absolute top-[-1px] w-full"
-          />
-        </div>
+        <div className="h-px w-full max-w-[80vw] -ml-6 bg-accent" />
 
         {/* Paragraph */}
-        <div className="flex gap-14 items-end px-8 w-full">
-          <p className="font-body text-xl leading-[1.5] w-[761px] text-bg">
+        <div className="flex gap-8 md:gap-14 items-end w-full">
+          <p className="font-body text-base md:text-lg lg:text-xl leading-[1.5] w-full max-w-3xl text-bg">
             <span className="font-semibold">We bring your vision to life.</span>
             <span className="font-light">
               {` We don't just design — we help shape brands and products into tangible results, that work beautifully, and grow with you. Every project we deliver reflects our deep commitment to quality, usability, and is designed to represent your business and drive success.`}
@@ -42,21 +35,26 @@ export function Clients() {
         </div>
       </div>
 
-      {/* Recent Work Section - Desktop */}
-      <div className="hidden lg:flex gap-[39px] items-end pb-14 px-8 w-full">
-        {/* Left: "/Recent" label */}
-        <div className="flex-1 flex items-end self-stretch">
-          <div className="flex flex-col h-full items-start justify-between max-w-[250px]">
-            {/* Top-left corner border */}
-            <div className="w-8 h-8 border-l-2 border-t-2 border-accent" />
-            <p className="font-header text-[48px] leading-none tracking-[-1.44px] text-bg">
-              <span className="text-accent">/</span>Recent
-            </p>
+      {/* Recent Work Section - Responsive Single Component */}
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-[39px] items-stretch lg:items-end pb-14 px-6 md:px-8 w-full max-w-7xl mx-auto">
+        
+        {/* Order 1 Mobile / Order 1 Desktop: "/Recent" label (desktop only shows at bottom-left) */}
+        <div className="flex lg:flex-1 items-center lg:items-end lg:self-stretch order-1 lg:order-1">
+          <div className="flex lg:flex-col items-center lg:items-start gap-2 lg:gap-0 lg:h-full lg:justify-between lg:max-w-[250px] w-full lg:w-auto">
+            {/* Top-left corner border (desktop only at top) */}
+            <div className="w-8 h-8 border-l-2 border-t-2 border-accent hidden lg:block" />
+            {/* Mobile: horizontal layout, Desktop: at bottom */}
+            <div className="flex items-center gap-2 lg:gap-0 lg:block">
+              <div className="w-8 h-8 border-l-2 border-t-2 border-accent lg:hidden" />
+              <p className="font-header text-3xl md:text-4xl lg:text-5xl leading-none tracking-[-0.03em] text-bg pt-6 -ml-6">
+                <span className="text-accent">/</span>Recent
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Center: Project Screenshot */}
-        <div className="flex-1 max-w-[760px] min-w-[480px] aspect-[891/588] rounded-2xl shadow-photo overflow-hidden">
+        {/* Order 0 Mobile / Order 2 Desktop: Project Screenshot */}
+        <div className="w-full lg:flex-2 lg:max-w-[760px] aspect-[891/588] rounded-2xl shadow-photo overflow-hidden order-2 lg:order-2">
           <div className="relative w-full h-full">
             <Image
               src="/images/recent-project-screenshot.png"
@@ -67,11 +65,12 @@ export function Clients() {
           </div>
         </div>
 
-        {/* Right: Project Info */}
-        <div className="flex items-end self-stretch">
-          <div className="flex flex-col h-full items-start justify-between max-w-[450px]">
+        {/* Order 3+ Mobile / Order 3 Desktop: Project Info */}
+        <div className="flex flex-col gap-4 lg:gap-0 lg:items-end lg:self-stretch order-3">
+          <div className="flex flex-col lg:h-full lg:justify-between lg:max-w-[450px] gap-4 lg:gap-0">
+            
             {/* Tags */}
-            <div className="flex gap-1 items-start justify-end pb-6 w-full flex-wrap">
+            <div className="flex gap-1 items-start flex-wrap lg:justify-end lg:pb-6">
               <span className="border border-accent rounded-full px-2 font-body font-light text-xs leading-[1.3] text-accent">
                 Featured
               </span>
@@ -86,22 +85,23 @@ export function Clients() {
               </span>
             </div>
 
-            {/* Title & Link Button */}
-            <div className="flex flex-col gap-4 w-full">
-              <div className="flex gap-4 items-center w-full">
-                <h3 className="font-header text-[32px] leading-none tracking-[-0.96px] whitespace-nowrap text-bg">
+            {/* Title, Button & Description */}
+            <div className="flex flex-col gap-4">
+              {/* Title & Link Button */}
+              <div className="flex gap-4 items-center">
+                <h3 className="font-header text-2xl md:text-3xl leading-none tracking-[-0.03em] text-bg lg:whitespace-nowrap">
                   The Daily Rundown
                 </h3>
                 <LinkOutButton href="https://aidailyrundown.com" />
               </div>
 
               {/* Description */}
-              <div className="flex flex-col pb-8 w-full">
-                <p className="font-body font-light text-base leading-[1.5] text-bg">
+              <div className="flex flex-col lg:pb-8">
+                <p className="font-body font-light text-sm md:text-base leading-[1.5] text-bg">
                   A fully automated news aggregator, with a custom Agentic Workflow. Red Tower was tapped to build this project and work to find a way to fully automate it with the help of AI. With nearly a year of working in the AI field (which is a long time in the world of AI), we were uniquely equipped to assist the client in the design and development of this project.
                 </p>
-                {/* Bottom-right corner border */}
-                <div className="flex items-end justify-end -mb-8 w-full">
+                {/* Bottom-right corner border (desktop only) */}
+                <div className="hidden lg:flex items-end justify-end -mb-8 w-full">
                   <div className="w-8 h-8 border-r-2 border-b-2 border-accent" />
                 </div>
               </div>
@@ -110,77 +110,17 @@ export function Clients() {
         </div>
       </div>
 
-      {/* Recent Work Section - Mobile */}
-      <div className="lg:hidden flex flex-col gap-8 pb-14 px-6 w-full">
-        {/* Project Screenshot */}
-        <div className="w-full aspect-[891/588] rounded-2xl shadow-photo overflow-hidden">
-          <div className="relative w-full h-full">
-            <Image
-              src="/images/recent-project-screenshot.png"
-              alt="Project screenshot"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-
-        {/* "/Recent" label with top-left corner border */}
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 border-l-2 border-t-2 border-accent" />
-          <p className="font-header text-[48px] leading-none tracking-[-1.44px] text-bg">
-            <span className="text-accent">/</span>Recent
-          </p>
-        </div>
-
-        {/* Tags */}
-        <div className="flex gap-1 items-start flex-wrap">
-          <span className="border border-accent rounded-full px-2 font-body font-light text-xs leading-[1.3] text-accent">
-            Featured
-          </span>
-          <span className="border border-bg rounded-full px-2 font-body font-light text-xs leading-[1.3] text-bg">
-            AI Automation
-          </span>
-          <span className="border border-bg rounded-full px-2 font-body font-light text-xs leading-[1.3] text-bg">
-            Design
-          </span>
-          <span className="border border-bg rounded-full px-2 font-body font-light text-xs leading-[1.3] text-bg">
-            Development
-          </span>
-        </div>
-
-        {/* Title & Link Button */}
-        <div className="flex gap-4 items-center">
-          <h3 className="font-header text-[32px] leading-none tracking-[-0.96px] text-bg">
-            The Daily Rundown
-          </h3>
-          <LinkOutButton href="https://aidailyrundown.com" />
-        </div>
-
-        {/* Description */}
-        <p className="font-body font-light text-base leading-[1.5] text-bg">
-          A fully automated news aggregator, with a custom Agentic Workflow. Red Tower was tapped to build this project and work to find a way to fully automate it with the help of AI. With nearly a year of working in the AI field (which is a long time in the world of AI), we were uniquely equipped to assist the client in the design and development of this project.
-        </p>
-      </div>
-
       {/* Divider - Red Line */}
-      <div className="flex flex-col gap-2.5 items-end justify-center w-full">
-        <div className="h-0 w-[834px] relative">
-          <Image
-            src="/images/hero-line.svg"
-            alt=""
-            width={834}
-            height={1}
-            className="absolute top-[-1px] w-full"
-          />
-        </div>
+      <div className="flex items-end justify-end w-full px-6 md:px-8 py-6">
+        <div className="h-px w-full max-w-4xl bg-accent -mr-6 md:-mr-8" />
       </div>
 
       {/* Happy Clients Section */}
-      <div className="flex flex-col gap-6 items-center pt-24 pb-48 w-full">
+      <div className="flex flex-col gap-6 items-center pt-12 md:pt-24 pb-24 md:pb-48 w-full px-6 md:px-8">
 
         {/* Header */}
         <div className="flex flex-col pb-0 text-center w-full">
-          <h3 className="font-header text-[32px] leading-none tracking-[-0.96px] text-bg">
+          <h3 className="font-header text-2xl md:text-3xl leading-none tracking-[-0.03em] text-bg">
             Previous, happy clients
           </h3>
         </div>
@@ -225,7 +165,7 @@ export function Clients() {
       {/* Rounded Corner Transition (inverted) */}
       <div className="relative w-full">
         <div className="bg-fg h-28 w-full relative rotate-180">
-          <div className="bg-bg h-28 rounded-bl-[112px] rounded-br-[112px] shadow-rtd-clock w-full" />
+          <div className="bg-bg h-10 md:h-28 rounded-bl-[112px] md:rounded-bl-[112px] rounded-br-[80px] md:rounded-br-[112px] shadow-rtd-clock w-full" />
         </div>
       </div>
     </section>

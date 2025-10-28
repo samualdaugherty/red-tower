@@ -21,16 +21,16 @@ const services: Service[] = [
     id: "research",
     title: "Research",
     number: "/01",
-    subtitle: "The start of great product",
+    subtitle: "Starting strong",
     description:
       "UX Research is a core component of the design process. Understanding the market, emerging trends, and user needs and pain points is a want. It's a must-have to creating a successful product. We can help you identify improvements to your core product or website, and catalog recommendations and user research into a document to help guide your UX process.",
     paddingTop: "pt-[32px]",
   },
   {
     id: "product",
-    title: "Product Design",
+    title: "Design",
     number: "/02",
-    subtitle: "More than just design",
+    subtitle: "More than just visuals",
     description:
       "Product and UX Design is more than just making it pretty. It's about how it works, how users navigate through it, and how to make using the website as intuitive and simple as possible. And we have over 10 years of experience doing just that. And adding the polish to make it look great too.",
     paddingTop: "pt-[136px]",
@@ -79,6 +79,7 @@ export function Focus() {
         number="/02"
         codeLeft="whatWeDo ( section (2), components (5) ) {"
         variant="light"
+        className="pt-9 md:pt-4"
       />
 
       {/* Desktop Layout */}
@@ -145,7 +146,7 @@ export function Focus() {
       </div>
 
       {/* Mobile Layout */}
-      <div className="lg:hidden flex flex-col gap-8 px-6 pb-28">
+      <div className="lg:hidden flex flex-col gap-8 px-6 pb-12 md:pb-28 pt-14">
         {/* Service Titles */}
         <div className="flex flex-col">
           {services.map((service) => {

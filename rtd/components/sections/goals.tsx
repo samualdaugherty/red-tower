@@ -13,16 +13,16 @@ export function Goals() {
           title="Intro"
           number="/01"
           codeLeft="introduction ( section (1), people (2) ) {"
-          className="pb-14"
+          className="pt-9 md:pt-4"
         />
 
       {/* Content */}
-      <div className="flex flex-col gap-8 items-center px-40 py-24 text-center text-fg max-w-[1280px] mx-auto" data-section="goals">
-        <h2 className="font-header text-[96px] leading-none tracking-[-2.88px]">
+      <div className="flex flex-col gap-6 md:gap-8 items-center px-6 md:px-12 lg:px-20 py-12 md:py-16 lg:py-24 pt-14 text-center text-fg max-w-7xl mx-auto">
+        <h2 className="font-header text-4xl md:text-6xl lg:text-7xl xl:text-8xl leading-none tracking-[-0.03em]">
           Your goals, our priority
         </h2>
-        <div className="font-body font-light text-base leading-[1.5]">
-          <p className="mb-0">
+        <div className="font-body font-light text-sm md:text-base leading-[1.5] max-w-4xl">
+          <p className="mb-4">
             Business owners are a lot of things, but rarely are they web developers. And while many no-code options exist in the marketplace today, the learning curve is steep, and the time investment is high. If you want to do that, you certainly can, and we even have a{" "}
             <Link 
               href="#" 
@@ -32,15 +32,14 @@ export function Goals() {
             </Link>
             {" "}to help you through the process, too.
           </p>
-          <p className="mb-0">&nbsp;</p>
-          <p className="mb-0">
+          <p>
             But there&apos;s an easier way. What if you had a full staff of designers and engineers ready to take over for you, craft a website that creates good experiences for your customers, and can make all of your updates for you? Now you can.
           </p>
         </div>
       </div>
 
       {/* Services Cards */}
-      <div className="flex gap-8 items-stretch pt-14 px-8 pb-0 max-w-[1440px] mx-auto">
+      <div className="flex flex-col lg:flex-row gap-6 md:gap-8 items-stretch pt-8 md:pt-14 px-4 md:px-6 lg:px-8 pb-0 max-w-md md:max-w-xl lg:max-w-7xl mx-auto">
         {/* Card 1: 24/7 priority care */}
         <div className="flex-1 bg-bg border border-fg rounded-lg overflow-hidden flex flex-col">
           <div className="relative w-full aspect-[4096/2731]">
@@ -51,11 +50,11 @@ export function Goals() {
               className="object-cover"
             />
           </div>
-          <div className="flex flex-col gap-4 p-4 text-center text-fg">
-            <h3 className="font-header text-[32px] leading-none tracking-[-0.96px]">
+          <div className="flex flex-col gap-4 p-4 md:p-6 text-center text-fg">
+            <h3 className="font-header text-2xl md:text-3xl leading-none tracking-[-0.03em]">
               24/7 priority care
             </h3>
-            <p className="font-body font-light text-base leading-[1.5]">
+            <p className="font-body font-light text-sm md:text-base leading-[1.5]">
               High-priority clients receive an average response time of less than 24 hours.
             </p>
           </div>
@@ -63,18 +62,18 @@ export function Goals() {
 
         {/* Card 2: Tweaks & Updates */}
         <div className="flex-1 bg-bg border border-fg rounded-lg overflow-hidden flex flex-col justify-between">
-          <div className="flex flex-col gap-4 p-4 text-center text-fg">
-            <h3 className="font-header text-[32px] leading-none tracking-[-0.96px]">
+          <div className="flex flex-col gap-4 p-4 md:p-6 text-center text-fg">
+            <h3 className="font-header text-2xl md:text-3xl leading-none tracking-[-0.03em]">
               Tweaks & Updates
             </h3>
-            <p className="font-body font-light text-base leading-[1.5]">
+            <p className="font-body font-light text-sm md:text-base leading-[1.5]">
               Request revisions or updates any time after the site is launched with the addition of a maintenance plan.
             </p>
           </div>
           
           {/* Checkboxes */}
-          <div className="bg-fg flex flex-col gap-3 px-6 py-3 rounded mx-4 mb-4">
-            <p className="font-header text-[24px] leading-none text-center text-bg">
+          <div className="bg-fg flex flex-col gap-3 px-4 md:px-6 py-3 rounded mx-4 mb-4">
+            <p className="font-header text-lg md:text-2xl leading-none text-center text-bg">
               Monthly updates
             </p>
             <div className="flex gap-2 items-center w-full">
@@ -180,11 +179,11 @@ export function Goals() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-4 p-4 text-center text-fg">
-            <h3 className="font-header text-[32px] leading-none tracking-[-0.96px]">
+          <div className="flex flex-col gap-4 p-4 md:p-6 text-center text-fg">
+            <h3 className="font-header text-2xl md:text-3xl leading-none tracking-[-0.03em]">
               Real Time Updates
             </h3>
-            <p className="font-body font-light text-base leading-[1.5]">
+            <p className="font-body font-light text-sm md:text-base leading-[1.5]">
               We take communication seriously, and provide project updates at every step.
             </p>
           </div>
@@ -194,13 +193,8 @@ export function Goals() {
       {/* End content wrapper */}
 
       {/* Rounded Corner Transition */}
-      <div className="bg-fg pt-0 pb-14">
-        <div 
-          className="bg-bg w-full h-28 rounded-bl-[112px] rounded-br-[112px]"
-          style={{
-            boxShadow: '-72.485px 68.891px 80px 0px rgba(0,0,0,0.15), -46.981px 44.651px 46.852px 0px rgba(0,0,0,0.11), -27.92px 26.536px 25.481px 0px rgba(0,0,0,0.09), -14.497px 13.778px 13px 0px rgba(0,0,0,0.08), -5.906px 5.613px 6.519px 0px rgba(0,0,0,0.06), -1.342px 1.276px 3.148px 0px rgba(0,0,0,0.04)'
-          }}
-        />
+      <div className="bg-fg pt-0 pb-8 md:pb-14">
+        <div className="bg-bg w-full h-10 md:h-28 rounded-bl-[80px] md:rounded-bl-[112px] rounded-br-[80px] md:rounded-br-[112px] shadow-clock" />
       </div>
     </section>
   );

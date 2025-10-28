@@ -78,10 +78,13 @@ export function Hero() {
   const pathname = usePathname();
   const isHomepage = pathname === "/";
 
-  // Track viewport size
+  // Track viewport size (desktop = >= 768px, mobile = < 768px)
+  const [isMobile, setIsMobile] = React.useState(false);
+  
   React.useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 1024);
+      setIsMobile(window.innerWidth < 768);
     };
     handleResize(); // Set initial value
     window.addEventListener("resize", handleResize);
@@ -151,15 +154,27 @@ export function Hero() {
 
   return (
     <>
-      {/* Fixed Navigation - Outside hero for proper z-index */}
-      <nav className="fixed top-0 left-0 right-0 flex items-start justify-between w-full z-50 px-6 lg:px-2 pt-2">
+      {/* Fixed Navigation Header - Logo and Toggle */}
+      <nav className="fixed top-0 left-0 right-0 flex items-start justify-between w-full z-50 px-2 pt-2 pointer-events-none">
         {/* Logo */}
         <Link href="/" className="overflow-visible block pointer-events-auto">
           <motion.div
             animate={{
-              fontSize: hasScrolled ? "24px" : isDesktop ? "164px" : "80px",
+              fontSize: hasScrolled 
+                ? "24px" 
+                : isMobile 
+                  ? "64px" 
+                  : isDesktop 
+                    ? "164px" 
+                    : "80px",
               rotate: hasScrolled ? -90 : 0,
-              letterSpacing: hasScrolled ? "-0.72px" : isDesktop ? "-4.92px" : "-2.4px",
+              letterSpacing: hasScrolled 
+                ? "-0.72px" 
+                : isMobile 
+                  ? "-1.92px" 
+                  : isDesktop 
+                    ? "-4.92px" 
+                    : "-2.4px",
               marginTop: hasScrolled ? "2.5rem" : "0rem",
               marginLeft: hasScrolled ? "0.5rem" : "0rem",
             }}
@@ -167,34 +182,17 @@ export function Hero() {
               duration: 0.2,
               ease: [0.25, 0.1, 0.25, 1],
             }}
-              className={`font-header leading-none whitespace-nowrap origin-left ${isDarkBackground ? 'text-accent' : 'text-bg'}`}
-            >
-              RDTWR
-            </motion.div>
-          </Link>
+            className={`font-header leading-none whitespace-nowrap origin-left ${isDarkBackground && !isNavOpen ? 'text-accent' : isNavOpen ? 'text-fg' : 'text-bg'}`}
+          >
+            RDTWR
+          </motion.div>
+        </Link>
 
-        {/* Navigation Toggle & Links */}
-        <div className="flex gap-[32px] items-center justify-end p-3 pointer-events-auto">
-          <AnimatePresence>
-            {isNavOpen && (
-              <>
-                {navLinks.map((link, index) => (
-                  <NavLinkItem 
-                    key={link.href}
-                    link={link}
-                    index={index}
-                    totalLinks={navLinks.length}
-                    isDarkBackground={isDarkBackground}
-                  />
-                ))}
-              </>
-            )}
-          </AnimatePresence>
-
-          {/* Plus/X Toggle Button */}
+        {/* Toggle Button (always visible) */}
+        <div className="pointer-events-auto p-0">
           <button
             onClick={() => setIsNavOpen(!isNavOpen)}
-            className="w-12 h-12 shrink-0"
+            className="w-12 h-12 shrink-0 relative z-50"
             aria-label={isNavOpen ? "Close menu" : "Open menu"}
           >
             <motion.div
@@ -203,11 +201,83 @@ export function Hero() {
               }}
               transition={quickSpring}
             >
-              <PlusIcon isOpen={isNavOpen} isDarkBackground={isDarkBackground} />
+              <PlusIcon 
+                isOpen={isMobile && isNavOpen ? false : isNavOpen} 
+                isDarkBackground={isMobile && isNavOpen ? true : isDarkBackground} 
+              />
             </motion.div>
           </button>
         </div>
       </nav>
+
+      {/* Mobile Navigation Flyout (< 768px) */}
+      <AnimatePresence>
+        {isNavOpen && isMobile && (
+          <motion.div
+            initial={{ rotate: 180 }}
+            animate={{ rotate: 0 }}
+            exit={{ rotate: 180 }}
+            transition={quickSpring}
+            className="fixed top-0 right-0 w-screen h-screen bg-accent z-40 origin-top-right"
+          >
+            {/* Inner container - counter-rotated to keep content upright */}
+            <motion.div
+              initial={{ rotate: -180 }}
+              animate={{ rotate: 0 }}
+              exit={{ rotate: -180 }}
+              transition={quickSpring}
+              className="w-full h-full relative"
+            >
+              {/* Nav Links at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 flex flex-col pb-8">
+                {navLinks.map((link, index) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <React.Fragment key={link.href}>
+                      {index > 0 && (
+                        <div className="h-px bg-bg w-full" />
+                      )}
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsNavOpen(false)}
+                        className="relative px-6 py-6 block"
+                      >
+                        <span className={cn(
+                          "font-header text-[48px] leading-none tracking-[-1.44px] text-fg"
+                        )}>
+                          {link.label}
+                        </span>
+                        {isActive && (
+                          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-fg" />
+                        )}
+                      </Link>
+                    </React.Fragment>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Desktop Navigation (>= 768px) */}
+      <AnimatePresence>
+        {isNavOpen && !isMobile && (
+          <div className="hidden md:block fixed top-0 right-0 z-40 pr-2 md:pr-15 lg:pr-15 pt-2">
+            <div className="flex gap-4 md:gap-6 lg:gap-[32px] items-center justify-end p-3 pt-2 pointer-events-auto">
+              {navLinks.map((link, index) => (
+                <NavLinkItem 
+                  key={link.href}
+                  link={link}
+                  index={index}
+                  totalLinks={navLinks.length}
+                  isDarkBackground={isDarkBackground}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
 
       <section className="relative flex flex-col h-screen">
         {/* Background Image with Gradient Overlay - Parallax transform */}
@@ -246,22 +316,16 @@ export function Hero() {
           }}
         >
           {/* Bottom Section - Content */}
-          <div className="relative flex flex-col gap-5 w-full px-6 lg:px-12">
+          <div className="relative flex flex-col gap-3 md:gap-5 w-full px-6 md:px-8 lg:px-12">
           {/* Decorative Line */}
-          <div className="w-full max-w-[834px] -mx-6 lg:-mx-12">
-            <Image
-              src="/images/hero-line.svg"
-              alt=""
-              width={834}
-              height={1}
-              className="w-full"
-            />
+          <div className="w-full max-w-4xl -mx-6 md:-mx-8 lg:-mx-12">
+            <div className="h-px w-full bg-accent" />
           </div>
 
           {/* Content */}
-          <div className="flex flex-col gap-2.5 items-end lg:px-8 w-full">
-            <div className="w-full lg:w-[761px]">
-              <p className="font-body text-lg lg:text-xl leading-[1.5] text-fg">
+          <div className="flex flex-col gap-2.5 items-end md:px-4 lg:px-8 w-full max-w-4xl ml-auto">
+            <div className="w-full">
+              <p className="font-body text-base md:text-lg lg:text-xl leading-[1.5] text-fg">
                 <span className="font-semibold">Building your own website is a mountain of work.</span>
                 <span className="font-light">
                   {` But it doesn't have to be that way. Let Red Tower take on the task for you, streamline your web presence, so you can focus on what really matters — your customers.`}
@@ -269,7 +333,7 @@ export function Hero() {
               </p>
             </div>
 
-            <div className="w-full lg:w-[761px] py-3.5">
+            <div className="w-full py-2 md:py-3.5">
               <Link href="/about">
                 <Button className="text-fg">Learn More</Button>
               </Link>

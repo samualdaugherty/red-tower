@@ -60,7 +60,7 @@ export function Navigation() {
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="lg:hidden flex items-center justify-between px-0 py-4 bg-bg sticky top-0 z-50">
+      <nav className="lg:hidden flex items-center justify-between px-1 py-2 bg-bg sticky top-0 z-50">
         <Link href="/" className="font-header text-[64px] leading-none tracking-[-1.92px] text-accent">
           RDTWR
         </Link>

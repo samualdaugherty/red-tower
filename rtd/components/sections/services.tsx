@@ -9,7 +9,7 @@ const services = [
     id: "research",
     number: "01",
     title: "Research",
-    heading: "The start of great product",
+    heading: "Starting strong",
     description:
       "UX Research is a core component of the design process. Understanding the market, emerging trends, and user needs and pain points is a want. It's a must-have to creating a successful product. We can help you identify improvements to your core product or website, and catalog recommendations and user research into a document to help guide your UX process.",
     paddingTop: "pt-8",
@@ -17,8 +17,8 @@ const services = [
   {
     id: "product",
     number: "02",
-    title: "Product Design",
-    heading: "More than just design",
+    title: "Design",
+    heading: "More than design",
     description:
       "Product and UX Design is more than just making it pretty. It's about how it works, how users navigate through it, and how to make using the website as intuitive and simple as possible. And we have over 10 years of experience doing just that. And adding the polish to make it look great too.",
     paddingTop: "pt-34",
