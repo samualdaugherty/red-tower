@@ -14,8 +14,7 @@ export function AboutEthos() {
         <SectionHeadline
           title="Ethos"
           number="/02"
-          codeLeft="function whatWeDo ( section (2), components (5) ) {"
-          codeRight="display === true;"
+          codeLeft="whatWeDo ( section (2), components (5) ) {"
           variant="light"
         />
 
