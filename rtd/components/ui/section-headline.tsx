@@ -77,7 +77,7 @@ export function SectionHeadline({ title, number, codeLeft, variant = "dark", cla
   return (
     <div 
       ref={headlineRef}
-      className={`flex flex-col w-full px-4 md:px-6 lg:px-8 sticky top-0 z-30 ${variant === "light" ? "bg-fg/40" : "bg-bg/40"} ${className} backdrop-blur-md py-4 gap-2 md:gap-3 lg:gap-4 transition-all duration-200`}
+      className={`flex flex-col w-full px-4 md:px-6 lg:px-8 sticky top-0 z-30 ${variant === "light" ? "bg-fg/40" : "bg-bg/40"} ${className} backdrop-blur-md py-4 pb-0 gap-2 md:gap-3 lg:gap-4 transition-all duration-200`}
     >
       {/* Title and Number */}
       <div 

@@ -17,11 +17,19 @@
   --font-header: var(--rtd-font-header);
   --font-subhead: var(--rtd-font-subhead);
   --font-body: var(--rtd-font-body);
-  
-  /* Shadows */
-  --shadow-photo: var(--rtd-shadow-photo);
-  --shadow-clock: var(--rtd-shadow-clock);
-  --shadow-hands: var(--rtd-shadow-hands);
+}
+
+/* Custom shadow utilities - defined outside @theme to avoid conflicts */
+.shadow-photo {
+  box-shadow: var(--rtd-shadow-photo);
+}
+
+.shadow-clock {
+  box-shadow: var(--rtd-shadow-clock);
+}
+
+.shadow-hands {
+  box-shadow: var(--rtd-shadow-hands);
 }
 
 @layer base {

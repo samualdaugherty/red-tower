@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { PlusIcon } from "@/components/ui/plus-icon";
 import { cn } from "@/lib/cn";
 import { quickSpring } from "@/lib/animations";
@@ -23,70 +22,68 @@ function NavLinkItem({ link, index, totalLinks, isDarkBackground }: { link: { hr
   const [isHovered, setIsHovered] = React.useState(false);
 
   return (
-        <motion.div
-          key={link.href}
-          initial={{ x: 48 * (totalLinks - index), opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: 48 * (totalLinks - index), opacity: 0 }}
-          transition={quickSpring}
-          className="flex flex-col gap-2.5 isolate items-center justify-center relative"
-        >
+    <motion.div
+      key={link.href}
+      initial={{ x: 48 * (totalLinks - index), opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: 48 * (totalLinks - index), opacity: 0 }}
+      transition={quickSpring}
+      className="flex flex-col gap-2.5 isolate items-center justify-center relative"
+    >
       <Link
         href={link.href}
         className="relative group"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-            {/* Text */}
-            <span 
-              className={cn(
-              "font-header text-[32px] leading-none tracking-[-0.96px] whitespace-nowrap relative",
-              isActive ? "z-[1]" : "z-[2]",
-              isDarkBackground ? "text-fg" : "text-bg"
-            )}>
-              {link.label}
-            </span>
+        {/* Text */}
+        <span 
+          className={cn(
+            "font-header text-[32px] leading-none tracking-[-0.96px] whitespace-nowrap relative",
+            isActive ? "z-[1]" : "z-[2]",
+            isDarkBackground ? "text-fg" : "text-bg"
+          )}
+        >
+          {link.label}
+        </span>
         
         {/* ONE red box that changes size, position, and z-index - Spring physics */}
-            <motion.div
-              initial={false}
-              animate={{
-                height: isActive ? 4 : isHovered ? 20 : 0,
-                left: isActive ? -9 : 0,
-                right: isActive ? -9 : 0,
-                top: isActive ? "50%" : "-32px",
-                y: isActive ? "-50%" : "0%",
-              }}
-              transition={quickSpring}
-              className={cn(
-                "absolute bg-accent",
-                isActive ? "z-[2]" : "z-[1]"
-              )}
-            />
+        <motion.div
+          initial={false}
+          animate={{
+            height: isActive ? 4 : isHovered ? 20 : 0,
+            left: isActive ? -9 : 0,
+            right: isActive ? -9 : 0,
+            top: isActive ? "50%" : "-32px",
+            y: isActive ? "-50%" : "0%",
+          }}
+          transition={quickSpring}
+          className={cn(
+            "absolute bg-accent",
+            isActive ? "z-[2]" : "z-[1]"
+          )}
+        />
       </Link>
     </motion.div>
   );
 }
 
-export function Hero() {
+export function AboutHero() {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
   const [hasScrolled, setHasScrolled] = React.useState(false);
-  const [isDesktop, setIsDesktop] = React.useState(true);
   const [scrollProgress, setScrollProgress] = React.useState(0);
   const [scrollY, setScrollY] = React.useState(0);
-  const [isDarkBackground, setIsDarkBackground] = React.useState(true); // Track if nav is over dark bg
+  const [isDarkBackground, setIsDarkBackground] = React.useState(true);
   const pathname = usePathname();
-  const isHomepage = pathname === "/";
 
   // Track viewport size (desktop = >= 768px, mobile = < 768px)
   const [isMobile, setIsMobile] = React.useState(false);
   
   React.useEffect(() => {
     const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 1024);
       setIsMobile(window.innerWidth < 768);
     };
-    handleResize(); // Set initial value
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -105,13 +102,11 @@ export function Hero() {
       setScrollProgress(progress);
 
       // Detect if nav is over a light (cream) background section
-      // Check all sections with data-background="light"
       const lightSections = document.querySelectorAll('[data-background="light"]');
       let isOverLightSection = false;
       
       for (const section of Array.from(lightSections)) {
         const rect = section.getBoundingClientRect();
-        // Check if the top 100px of viewport overlaps with this section
         if (rect.top <= 100 && rect.bottom > 0) {
           isOverLightSection = true;
           break;
@@ -138,54 +133,33 @@ export function Hero() {
     return () => window.removeEventListener("scroll", handleScrollWithRAF);
   }, []);
 
-  // Auto-open nav when scrolled - DISABLED for parallax effect
-  // React.useEffect(() => {
-  //   if (hasScrolled && !isNavOpen) {
-  //     setIsNavOpen(true);
-  //   }
-  // }, [hasScrolled, isNavOpen]);
-
   // Calculate opacity and scale based on scroll progress
-  const heroOpacity = isHomepage ? 1 - scrollProgress : 1;
-  const heroScale = isHomepage ? 1 - (scrollProgress * 0.2) : 1; // Scale from 1.0 to 0.8
+  const heroOpacity = 1 - scrollProgress;
+  const heroScale = 1 - (scrollProgress * 0.2); // Scale from 1.0 to 0.8
   
   // Calculate slow scroll (25% speed) - move hero at 25% of scroll speed
-  const slowScrollOffset = isHomepage ? scrollY * 0.75 : 0;
+  const slowScrollOffset = scrollY * 0.75;
 
   return (
     <>
       {/* Fixed Navigation Header - Logo and Toggle */}
       <nav className="fixed top-0 left-0 right-0 flex items-start justify-between w-full z-50 px-2 pt-2 pointer-events-none">
-        {/* Logo */}
+        {/* Logo - Always in rotated/small state for non-homepage */}
         <Link href="/" className="overflow-visible block pointer-events-auto">
-          <motion.div
-            animate={{
-              fontSize: hasScrolled 
-                ? "24px" 
-                : isMobile 
-                  ? "64px" 
-                  : isDesktop 
-                    ? "164px" 
-                    : "80px",
-              rotate: hasScrolled ? -90 : 0,
-              letterSpacing: hasScrolled 
-                ? "-0.72px" 
-                : isMobile 
-                  ? "-1.92px" 
-                  : isDesktop 
-                    ? "-4.92px" 
-                    : "-2.4px",
-              marginTop: hasScrolled ? "2.5rem" : "0rem",
-              marginLeft: hasScrolled ? "0.5rem" : "0rem",
+          <div
+            className={cn(
+              "font-header text-[24px] leading-none whitespace-nowrap origin-left",
+              isMobile && isNavOpen ? "text-fg" : "text-accent"
+            )}
+            style={{
+              rotate: "-90deg",
+              letterSpacing: "-0.72px",
+              marginTop: "2.5rem",
+              marginLeft: "0.5rem",
             }}
-            transition={{
-              duration: 0.2,
-              ease: [0.25, 0.1, 0.25, 1],
-            }}
-            className={`font-header leading-none whitespace-nowrap origin-left ${isDarkBackground && !isNavOpen ? 'text-accent' : isNavOpen ? 'text-fg' : 'text-accent'}`}
           >
             RDTWR
-          </motion.div>
+          </div>
         </Link>
 
         {/* Toggle Button (always visible) */}
@@ -248,7 +222,7 @@ export function Hero() {
                           {link.label}
                         </span>
                         {isActive && (
-                          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-fg" />
+                          <div className="absolute left-2 right-2 top-1/2 -translate-y-1/2 h-1 bg-bg" />
                         )}
                       </Link>
                     </React.Fragment>
@@ -287,69 +261,64 @@ export function Hero() {
         className="relative"
       >
         <section className="relative flex flex-col h-screen">
-        {/* Background Image with Gradient Overlay - Parallax transform */}
-        <div 
-          aria-hidden="true" 
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            opacity: heroOpacity,
-            transform: isHomepage 
-              ? `translateY(${slowScrollOffset}px) scale(${heroScale})` 
-              : 'none',
-            transformOrigin: 'center center',
-            willChange: isHomepage ? 'opacity, transform' : 'auto',
-          }}
-        >
-          <Image
-            src="/images/hero-bg.png"
-            alt=""
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent from-[24.5%] to-bg" />
-        </div>
-
-        {/* Hero Content Container - Full 100vh with parallax transform */}
-        <div 
-          className="relative flex flex-col items-end justify-end flex-1 pb-24 z-10"
-          style={{
-            opacity: heroOpacity,
-            transform: isHomepage 
-              ? `translateY(${slowScrollOffset}px) scale(${heroScale})` 
-              : 'none',
-            transformOrigin: 'center center',
-            willChange: isHomepage ? 'opacity, transform' : 'auto',
-          }}
-        >
-          {/* Bottom Section - Content */}
-          <div className="relative flex flex-col gap-3 md:gap-5 w-full px-6 md:px-8 lg:px-12">
-          {/* Decorative Line */}
-          <div className="w-full max-w-4xl -mx-6 md:-mx-8 lg:-mx-12">
-            <div className="h-px w-full bg-accent" />
+          {/* Background Image with Gradient Overlay - Parallax transform */}
+          <div 
+            aria-hidden="true" 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              opacity: heroOpacity,
+              transform: `translateY(${slowScrollOffset}px) scale(${heroScale})`,
+              transformOrigin: 'center center',
+              willChange: 'opacity, transform',
+            }}
+          >
+            <Image
+              src="/images/about-hero.png"
+              alt=""
+              fill
+              className="object-cover object-center"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent from-[54.5%] to-bg" />
           </div>
 
-          {/* Content */}
-          <div className="flex flex-col gap-2.5 items-end md:px-4 lg:px-8 w-full max-w-4xl ml-auto">
-            <div className="w-full">
-              <p className="font-body text-base md:text-lg lg:text-xl leading-[1.5] text-fg">
-                <span className="font-semibold">Building your own website is a mountain of work.</span>
-                <span className="font-light">
-                  {` But it doesn't have to be that way. Let Red Tower take on the task for you, streamline your web presence, so you can focus on what really matters — your customers.`}
-                </span>
-              </p>
-            </div>
+          {/* Hero Content Container - Full 100vh with parallax transform */}
+          <div 
+            className="relative flex flex-col items-start justify-end flex-1 pb-24 z-10"
+            style={{
+              opacity: heroOpacity,
+              transform: `translateY(${slowScrollOffset}px) scale(${heroScale})`,
+              transformOrigin: 'center center',
+              willChange: 'opacity, transform',
+            }}
+          >
+            {/* Bottom Section - Content */}
+            <div className="relative flex flex-col gap-3 md:gap-5 w-full px-6 md:px-8 lg:px-12">
+              {/* Heading */}
+              <div className="w-full">
+                <h1 className="font-header text-[56px] sm:text-[72px] md:text-[96px] leading-none tracking-[-0.03em] text-fg">
+                  Crafting Experiences
+                </h1>
+              </div>
 
-            <div className="w-full py-2 md:py-3.5">
-              <Link href="/about">
-                <Button className="text-fg">Learn More</Button>
-              </Link>
+              {/* Decorative Line */}
+              <div className="w-full max-w-4xl -mx-6 md:-mx-8 lg:-mx-12">
+                <div className="h-px w-full bg-accent" />
+              </div>
+
+              {/* Content - Right aligned with left padding */}
+              <div className="flex flex-col gap-2.5 items-end w-full">
+                <div className="w-full max-w-4xl ml-auto">
+                  <p className="font-body text-base md:text-lg lg:text-xl leading-[1.5] text-fg font-light">
+                    {`Red Tower is a team of two. And we've been that way since we started in 2017. It allows us to provide a personal experience for every client. Being small drives our core philosophy of how we work — One client at a time, focused on our craft, and delivering an experience that exceeds expectations.`}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-          </div>
-        </div>
-      </section>
+        </section>
       </motion.div>
     </>
   );
 }
+

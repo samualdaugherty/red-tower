@@ -17,7 +17,7 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-bg border-b-8 border-accent">
+    <footer className="relative z-10 bg-bg border-b-8 border-accent">
       {/* Main Footer Content */}
       <div className="px-6 lg:px-14 py-8 lg:py-16">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-6 items-center">
@@ -73,7 +73,7 @@ export function Footer() {
       </div>
 
       {/* Copyright Section */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-5 pb-6 px-6">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-5 pb-6 px-6">
         <p className="font-body font-light text-sm lg:text-[14px] leading-[1.5] text-fg whitespace-nowrap">
           © 2025 Red Tower Digital
         </p>

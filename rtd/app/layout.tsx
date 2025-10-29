@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Anton, Allison, Montserrat } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
+import { ScrollRestoration } from "@/components/ui/scroll-restoration";
 import "../styles/globals.css";
 
 // Load Google Fonts
@@ -38,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${anton.variable} ${allison.variable} ${montserrat.variable}`}>
       <body>
+        <ScrollRestoration />
         <main>{children}</main>
         <Footer />
       </body>
