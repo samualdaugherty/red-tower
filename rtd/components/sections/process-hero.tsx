@@ -307,7 +307,7 @@ export function ProcessHero() {
               <div className="flex flex-col gap-2.5 items-end w-full">
                 <div className="w-full max-w-4xl ml-auto">
                   <p className="font-body text-base md:text-lg lg:text-xl leading-[1.5] text-fg font-light">
-                    Building your own website means following tutorials, reading documentation, google search black holes when nothing seems to work. Or you can just work with a human who can do it for you. Working with us is as easy as having a conversation. And that’s just the way we like it.
+                    Building your own website means following tutorials, reading documentation, google search black holes when nothing seems to work. Or you can just work with a human who can do it for you. Working with Red Tower is as easy as having a conversation. And that’s just the way we like it.
                   </p>
                 </div>
               </div>
