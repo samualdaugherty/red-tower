@@ -469,5 +469,14 @@ Always ask to confirm manual changes before overwriting them.
 
 ---
 
-**Last Updated**: Session 12 (Work FAQ completion)
-**Status**: Three pages functional, ready for content population and asset replacement
+### Session 13: Process Page - Hero
+- Built ProcessHero component based on work-hero.tsx template
+- Uses same navigation, spacing, animations, and gradient as work hero
+- Background image: `/images/hero-bg.png` (same as homepage)
+- Title: "Work with people"
+- Content from Figma about working with humans vs. tutorials
+
+---
+
+**Last Updated**: Session 13 (Process Hero completion)
+**Status**: Four pages functional (Home, About, Work, Process hero), Process page needs additional sections
