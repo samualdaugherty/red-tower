@@ -16,6 +16,7 @@ export function AboutEthos() {
           number="/02"
           codeLeft="whatWeDo ( section (2), components (5) ) {"
           variant="light"
+          className="pt-9 md:pt-4"
         />
 
         {/* Centered Header Content */}

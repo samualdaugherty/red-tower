@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://redtowerdigital.com
+
+# Sitemaps
+Sitemap: https://redtowerdigital.com/sitemap.xml

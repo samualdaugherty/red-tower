@@ -8,18 +8,37 @@ interface LinkOutButtonProps {
   href: string;
   className?: string;
   variant?: "light" | "dark"; // light = black icon on light bg, dark = cream icon on dark bg
+  size?: "small" | "default" | "large"; // small = 40px, default = 48px, large = 64px
 }
 
-export function LinkOutButton({ href, className = "", variant = "light" }: LinkOutButtonProps) {
+export function LinkOutButton({ href, className = "", variant = "light", size = "default" }: LinkOutButtonProps) {
   const [isHovered, setIsHovered] = React.useState(false);
   const iconColor = variant === "dark" ? "text-fg" : "text-bg";
+  
+  const sizeClasses = {
+    small: "w-10 h-10",
+    default: "w-12 h-12",
+    large: "w-16 h-16",
+  };
+  
+  const iconSizeClasses = {
+    small: "w-5 h-5",
+    default: "w-7 h-7",
+    large: "w-9 h-9",
+  };
+  
+  const textSizeClasses = {
+    small: "text-[16px] tracking-[-0.48px]",
+    default: "text-[24px] tracking-[-0.96px]",
+    large: "text-[32px] tracking-[-0.96px]",
+  };
 
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`relative flex items-center justify-center w-12 h-12 rounded-full border-2 border-accent overflow-hidden ${className}`}
+      className={`relative flex items-center justify-center ${sizeClasses[size]} rounded-full border-2 border-accent overflow-hidden ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       aria-label="Visit project"
@@ -40,7 +59,7 @@ export function LinkOutButton({ href, className = "", variant = "light" }: LinkO
           opacity: isHovered ? 0 : 1,
         }}
         transition={quickFade}
-        className={`absolute w-7 h-7 flex items-center justify-center ${iconColor}`}
+        className={`absolute ${iconSizeClasses[size]} flex items-center justify-center ${iconColor}`}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
           <path 
@@ -61,7 +80,7 @@ export function LinkOutButton({ href, className = "", variant = "light" }: LinkO
           opacity: isHovered ? 1 : 0,
         }}
         transition={quickFade}
-        className="font-header text-[24px] leading-none tracking-[-0.96px] text-fg relative"
+        className={`font-header leading-none text-fg relative ${textSizeClasses[size]}`}
       >
         Visit
       </motion.p>

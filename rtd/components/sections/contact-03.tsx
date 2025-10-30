@@ -8,7 +8,7 @@ export function Contact03() {
       <SectionHeadline
         title="Contact"
         number="/03"
-        codeLeft="reachOut ( section (4), modes (1) ) {"
+        codeLeft="reachOut ( section (3), modes (1) ) {"
         variant="dark"
       />
     </section>
