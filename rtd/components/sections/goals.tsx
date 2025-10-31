@@ -23,14 +23,7 @@ export function Goals() {
         </h2>
         <div className="font-body font-light text-sm md:text-base leading-[1.5] max-w-4xl">
           <p className="mb-4">
-            Business owners are a lot of things, but rarely are they web developers. And while many no-code options exist in the marketplace today, the learning curve is steep, and the time investment is high. If you want to do that, you certainly can, and we even have a{" "}
-            <Link 
-              href="#" 
-              className="font-semibold text-accent hover:underline decoration-accent decoration-2 underline-offset-2"
-            >
-              handy guide
-            </Link>
-            {" "}to help you through the process, too.
+            Business owners are a lot of things, but rarely are they web developers. And while many no-code options exist in the marketplace today, the learning curve is steep, and the time investment is high. If you want to do that, you certainly can, and we happy to give you some suggestions to help you through the process, too.
           </p>
           <p>
             But there&apos;s an easier way. What if you had a full staff of designers and engineers ready to take over for you, craft a website that creates good experiences for your customers, and can make all of your updates for you? Now you can.
