@@ -41,10 +41,16 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email using Resend
+    // Use your verified domain instead of onboarding@resend.dev
+    console.log("Attempting to send email via Resend...");
+    console.log("API Key exists:", !!apiKey);
+    
+    // Try sending to multiple addresses to test delivery
+    // Note: You can also use 'cc' or 'bcc' fields if needed
     const { data, error } = await resend.emails.send({
-      from: "Red Tower Contact Form <onboarding@resend.dev>", // Update this domain after verifying
-      to: ["sam@redtowerdigital.com"], // Your email address
-      replyTo: email, // So you can reply directly to the sender
+      from: "Red Tower Contact Form <noreply@redtowerdigital.com>", // Use your verified domain
+      to: ["sam@redtowerdigital.com"],
+      replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
@@ -63,20 +69,24 @@ export async function POST(request: NextRequest) {
     });
 
     if (error) {
-      console.error("Resend error:", error);
+      console.error("Resend API error:", error);
+      console.error("Error details:", JSON.stringify(error, null, 2));
       return NextResponse.json(
-        { error: `Failed to send email: ${error.message || "Unknown error"}` },
+        { error: `Failed to send email: ${error.message || JSON.stringify(error)}` },
         { status: 500 }
       );
     }
 
+    console.log("Email sent successfully. Resend ID:", data?.id);
+
     return NextResponse.json(
-      { success: true, message: "Email sent successfully" },
+      { success: true, message: "Email sent successfully", emailId: data?.id },
       { status: 200 }
     );
   } catch (error) {
     console.error("API error:", error);
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    console.error("Full error:", JSON.stringify(error, null, 2));
     return NextResponse.json(
       { error: `Internal server error: ${errorMessage}` },
       { status: 500 }
