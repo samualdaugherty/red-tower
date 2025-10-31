@@ -49,7 +49,8 @@ export async function POST(request: NextRequest) {
     // Note: You can also use 'cc' or 'bcc' fields if needed
     const { data, error } = await resend.emails.send({
       from: "Red Tower Contact Form <noreply@redtowerdigital.com>", // Use your verified domain
-      to: ["sam@redtowerdigital.com"],
+      to: ["ben@redtowerdigital.com"],
+      cc: ["sam@redtowerdigital.com"],
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       html: `
