@@ -129,6 +129,117 @@ When editing files, be aware the user frequently makes manual adjustments to:
 
 ---
 
+## Future Features (Planned)
+
+### 1. Site Builder DIY Guide ✅ **Priority: High**
+**Status**: Not Started  
+**Location**: Homepage Goals section links to "handy guide" (`/components/sections/goals.tsx` line 28-32)
+
+**Options:**
+- **PDF Download**: Upload PDF to `/public/` and link directly
+- **Web Page**: Create `/learn/site-builder-diy` page with full guide content (better for SEO)
+
+**Recommendation**: Web page is better for SEO and user experience, but PDF is quicker to implement. Can start with PDF, convert to page later.
+
+**Action Items:**
+- [ ] Create PDF or design web page content
+- [ ] Upload PDF to `/public/downloads/site-builder-diy.pdf` OR create `/app/learn/site-builder-diy/page.tsx`
+- [ ] Update link in `goals.tsx` from `href="#"` to actual URL
+
+---
+
+### 2. Email Marketing Landing Pages 📧
+**Status**: Planned (content TBD)  
+**Purpose**: Custom landing pages for email marketing campaigns
+
+**Technical Considerations:**
+- Can create dynamic routes: `/campaigns/[slug]` for easy management
+- Use existing design system components
+- Track campaign performance (maybe integrate with analytics)
+
+**Action Items:**
+- [ ] Determine number of landing pages needed
+- [ ] Gather content/design requirements
+- [ ] Create routing structure (`/app/campaigns/[slug]/page.tsx`)
+- [ ] Build reusable landing page template
+
+---
+
+### 3. Automated Email Drip Campaign System 🤖
+**Status**: Research Phase  
+**Purpose**: Automated 3-4 email drip campaign to potential clients
+
+**Initial Thoughts:**
+- Upload list of potential clients via admin
+- Trigger automated email sequence
+- Track opens/clicks
+
+**Technical Options:**
+
+**Option A: Serverless Functions + Cron**
+- Next.js API routes handle email sending
+- Vercel Cron Jobs or external scheduler (cron-job.org)
+- Store campaign data in database (Vercel Postgres, Supabase, or MongoDB)
+- Use Resend for sending emails (already integrated)
+
+**Option B: Third-Party Service**
+- Use email marketing platform (Mailchimp, ConvertKit, SendGrid Marketing)
+- Integrate via API
+- Manage campaigns externally
+
+**Option C: AI Agent Workflow**
+- Use OpenAI API or similar for personalized email content
+- Generate custom emails based on company info
+- More sophisticated but requires AI API costs
+
+**Recommended Approach**: Start with Option A (serverless + cron) for full control, migrate to Option B if complexity grows.
+
+**Required Components:**
+- Admin interface for uploading/managing contact lists
+- Email template system
+- Campaign scheduler
+- Email tracking (opens, clicks)
+- Unsubscribe handling
+
+**Action Items:**
+- [ ] Decide on approach (A, B, or C)
+- [ ] Set up database for contacts/campaigns
+- [ ] Build admin interface (if Option A)
+- [ ] Create email templates
+- [ ] Implement scheduler/cron job
+- [ ] Add tracking/analytics
+
+---
+
+### 4. Admin Dashboard 🔐
+**Status**: Conditional (depends on #3)  
+**Purpose**: Manage email campaigns, upload contact lists, view analytics
+
+**Features (if needed):**
+- Upload/manage contact lists (CSV import)
+- Create/edit email campaigns
+- View campaign performance
+- Manage email templates
+- User authentication (simple or full auth system)
+
+**Technical Considerations:**
+- Could use Next.js middleware for auth
+- Simple approach: Password-protected route
+- Full approach: Auth system (NextAuth.js, Clerk, etc.)
+- Database for storing data
+
+**Dependencies**: 
+- Only needed if we build Option A for email campaigns
+- If using Option B (third-party service), admin might not be needed
+
+**Action Items:**
+- [ ] Decide if admin is needed based on email campaign approach
+- [ ] Design admin interface
+- [ ] Implement authentication
+- [ ] Build CRUD operations for campaigns/contacts
+
+---
+
 ## Figma Integration
 
 **MCP Integration**: Figma MCP is working! Use it to get design specs:
