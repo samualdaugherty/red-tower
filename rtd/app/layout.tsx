@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     siteName: "Red Tower Digital",
     images: [
       {
-        url: "/images/social-share.png",
+        url: "https://redtowerdigital.com/images/social-share.png",
         width: 1200,
         height: 630,
         alt: "Red Tower Digital",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Red Tower Digital",
     description: "Building your own website is a mountain of work. But it doesn't have to be that way. Let Red Tower take on the task for you, streamline your web presence, so you can focus on what really matters — your customers.",
-    images: ["/images/social-share.png"],
+    images: ["https://redtowerdigital.com/images/social-share.png"],
   },
 };
 
