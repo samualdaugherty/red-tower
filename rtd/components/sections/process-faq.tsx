@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { SectionHeadline } from "@/components/ui/section-headline";
 import { FAQAccordion, FAQItem } from "@/components/ui/faq-accordion";
 
@@ -58,7 +59,11 @@ export function ProcessFAQ() {
                 Frequently Asked
               </h2>
               <p className="font-body text-base md:text-[20px] leading-[1.5] text-bg font-light">
-                Not every question you have will be answered here, but we&apos;ve tried to cover some of the common ones we receive. If you have questions, and the answer isn&apos;t here, <span className="text-accent font-semibold">contact us</span> and we&apos;ll be sure to answer it.
+                Not every question you have will be answered here, but we&apos;ve tried to cover some of the common ones we receive. If you have questions, and the answer isn&apos;t here,{" "}
+                <Link href="/contact" className="text-accent font-semibold hover:underline decoration-accent decoration-2 underline-offset-2">
+                  contact us
+                </Link>
+                {" "}and we&apos;ll be sure to answer it.
               </p>
             </div>
 
